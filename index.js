@@ -16,6 +16,8 @@ let users = [
         name: "Lesly Alvarenga"
     }
 ]
+
+//endpoints
 server.get('/', (req, res) => {
     res.json({ api: 'running.....'})
 })

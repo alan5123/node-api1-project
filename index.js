@@ -8,12 +8,15 @@ server.use(express.json()); //teaches the server to parse JSON from the body
 let users = [
     {
         id:1,
-        name: "Alan Parker"
+        name: "Alan Parker",
+        bio: "21 year old Web Development student"
     },
 
     {
         id:2,
-        name: "Lesly Alvarenga"
+        name: "Lesly Alvarenga",
+        bio: "20 year old Surgical Tech"
+        
     }
 ]
 
@@ -24,6 +27,12 @@ server.get('/', (req, res) => {
 
 server.get("/api/users", (req, res) => {
     res.json(users)
+
+    if (user){
+        res.status(200).json(user)
+    }else {
+        res.status(404).json({message: "User not found"})
+    }
 })
 
 server.get("/api/users/:id", (req, res) => {
@@ -37,6 +46,13 @@ server.get("/api/users/:id", (req, res) => {
         res.status(404).json({message: "User not found"})
     }
     
+})
+
+server.post("/api/users", (req, res) => {
+    const userInfo = req.body
+
+    users.push(userInfo)
+    res.status(201).json(users)
 })
 
 
